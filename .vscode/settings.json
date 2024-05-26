@@ -1,0 +1,7 @@
+{
+    "java.project.referencedLibraries": [
+        "lib/**/*.jar",
+        "c:\\Users\\dunan\\OneDrive\\Documents\\Cours\\Dev web\\daw-fullstack-main\\backend\\libs\\mysql-connector-j-8.4.0.jar",
+        "c:\\Users\\dunan\\OneDrive\\Documents\\Cours\\Dev web\\daw-fullstack-main\\backend\\libs\\gson-2.10.1.jar"
+    ]
+}
