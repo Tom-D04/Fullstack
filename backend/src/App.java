@@ -16,6 +16,11 @@ public class App {
             "/bid/:productId",
             (WebServerContext context) -> { myController.bid(context); }
         );
+        webserver.getRouter().get(
+            "/bidding/:productId",
+            (WebServerContext context) -> { myController.findBidById(context); }
+        );
+
 
 
     }

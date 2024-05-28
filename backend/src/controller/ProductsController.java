@@ -25,6 +25,19 @@ public class ProductsController {
         return products;
     
     }   
+    public int findBidById(WebServerContext context){
+        try {
+            int id = Integer.parseInt(context.getRequest().getParam("productId"));
+            int bid = dao.getBidById(id);
+            context.getResponse().json(bid);
+            return bid;
+        } catch (Exception e) {
+            context.getResponse().serverError("Erreur lors de la récupération de l'enchère");
+            System.out.println("Erreur lors de la récupération de l'enchère");
+            e.printStackTrace();
+            return 0;
+        }
+    }
     public boolean bid(WebServerContext context){
         
         try {

@@ -16,22 +16,23 @@ export class ProductsView{
         produit.classList.add('product');
         document.querySelector('.products').appendChild(produit);
         produit.innerHTML = `
-            <h2>${productInfo.name}</h2>
-            <p>${productInfo.owner}</p>
-            <p>${productInfo.bid}</p>
+            <h2> ${productInfo.name} </h2>
+            <p> ${productInfo.owner} </p>
+            <p id = 'bid${productInfo.id}'> ${productInfo.bid} </p>
             <button id = ${productInfo.id}> Enchérir </button>
         `;
         document.getElementById(productInfo.id).addEventListener('click', async () => {
             const bid = await ProductsService.bid(productInfo.id);
             if(bid){
+                var enchere = document.getElementById('bid'+productInfo.id);
+                const newBid = await ProductsService.findBid(productInfo.id);
+                enchere.innerHTML = newBid; 
                 console.log('Enchère réussie');
             }
             else{
                 console.log("Erreur lors de l'enchère");
             }
         });
-        
-        
         return produit;
     }
         
