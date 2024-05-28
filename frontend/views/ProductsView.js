@@ -19,8 +19,19 @@ export class ProductsView{
             <h2>${productInfo.name}</h2>
             <p>${productInfo.owner}</p>
             <p>${productInfo.bid}</p>
-            <button>Enchérir</button>
+            <button id = ${productInfo.id}> Enchérir </button>
         `;
+        document.getElementById(productInfo.id).addEventListener('click', async () => {
+            const bid = await ProductsService.bid(productInfo.id);
+            if(bid){
+                console.log('Enchère réussie');
+            }
+            else{
+                console.log("Erreur lors de l'enchère");
+            }
+        });
+        
+        
         return produit;
     }
         

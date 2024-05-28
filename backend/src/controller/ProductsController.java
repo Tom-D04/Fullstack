@@ -8,7 +8,9 @@ import webserver.WebServerContext;
 
 public class ProductsController {
     ProductsDAO dao = new ProductsDAO();
+
     public ProductsController() {
+        
     }
     public ArrayList<Product> findAll(WebServerContext context) {
         
@@ -23,9 +25,10 @@ public class ProductsController {
         return products;
     
     }   
-    public boolean bid(int id, WebServerContext context){
+    public boolean bid(WebServerContext context){
         
         try {
+            int id = Integer.parseInt(context.getRequest().getParam("productId"));
             boolean bidding = dao.bid(id); 
             context.getResponse().ok("Enchère effectuée");
             return bidding; 

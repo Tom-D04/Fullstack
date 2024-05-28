@@ -1,4 +1,5 @@
 package DAO;
+import java.sql.PreparedStatement;
 import java.sql.SQLException;
 import java.util.ArrayList;
 
@@ -33,10 +34,11 @@ public class ProductsDAO {
     }
     public boolean bid(int id){
         try {
-            var statement = this.db.prepareStatement("UPDATE product SET bid = bid + 50 WHERE id = ?");
+            PreparedStatement statement = this.db.prepareStatement("UPDATE product SET bid = bid + 50 WHERE id = ?");
             statement.setInt(1, id);
-            boolean result = statement.execute();
-            return result;            
+            statement.executeUpdate();  // On utilise executeUpdate car c'est une Update de la DB et on ne récupère pas de résultat au contraire de exacuteQuery où on récupère forcément un résultat
+            System.out.println("Enchère effectuée");
+            return true;            
         } catch (SQLException e) {
             System.out.println("Erreur lors de l'enchère");
             e.printStackTrace();

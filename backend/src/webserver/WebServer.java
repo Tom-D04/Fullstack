@@ -19,7 +19,7 @@ public class WebServer {
     }
 
     public WebServer() {
-        this.listeningPort = 80;
+        this.listeningPort = 81;
         this.server = null;
         this.router = new WebServerRouter();
         this.sse = new WebServerSSE(router);
