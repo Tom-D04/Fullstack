@@ -21,7 +21,5 @@ public class App {
             (WebServerContext context) -> { myController.findBidById(context); }
         );
 
-
-
     }
 }

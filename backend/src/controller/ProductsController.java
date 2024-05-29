@@ -29,7 +29,6 @@ public class ProductsController {
         try {
             int id = Integer.parseInt(context.getRequest().getParam("productId"));
             int bid = dao.getBidById(id);
-            context.getResponse().json(bid);
             return bid;
         } catch (Exception e) {
             context.getResponse().serverError("Erreur lors de la récupération de l'enchère");
@@ -43,7 +42,13 @@ public class ProductsController {
         try {
             int id = Integer.parseInt(context.getRequest().getParam("productId"));
             boolean bidding = dao.bid(id); 
+            int bid = dao.getBidById(id);
+            String idString = Integer.toString(id);
+            String bidString = Integer.toString(bid);    
+            context.getResponse().json(bid);
+            context.getSSE().emit("bids", "id: " + idString + " bid: " + bidString + "\n\n))");
             context.getResponse().ok("Enchère effectuée");
+            
             return bidding; 
 
         } catch (Exception e) {

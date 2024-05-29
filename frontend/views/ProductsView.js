@@ -25,15 +25,17 @@ export class ProductsView{
             const bid = await ProductsService.bid(productInfo.id);
             if(bid){
                 var enchere = document.getElementById('bid'+productInfo.id);
-                const newBid = await ProductsService.findBid(productInfo.id);
-                enchere.innerHTML = newBid; 
-                console.log('Enchère réussie');
+                const updateEnchere = await ProductsService.findBid(productInfo.id);
+                enchere.innerHTML = updateEnchere;
             }
             else{
                 console.log("Erreur lors de l'enchère");
             }
         });
         return produit;
+    }
+    updateBid(data){
+        console.log(data);
     }
         
 }

@@ -37,7 +37,6 @@ export class ProductsService{
         })
         if(response.status === 200)
             {
-            console.log("Récupération du montant")
             const data = await response.json();
             return data;
             }
