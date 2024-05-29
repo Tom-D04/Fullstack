@@ -37,11 +37,11 @@ public class ProductsController {
             return 0;
         }
     }
-    public boolean bid(WebServerContext context){
+    public int bid(WebServerContext context){
         
         try {
             int id = Integer.parseInt(context.getRequest().getParam("productId"));
-            boolean bidding = dao.bid(id); 
+            dao.bid(id); 
             int bid = dao.getBidById(id);
             String idString = Integer.toString(id);
             String bidString = Integer.toString(bid);    
@@ -49,13 +49,13 @@ public class ProductsController {
             context.getSSE().emit("bids", "id: " + idString + " bid: " + bidString + "\n\n))");
             context.getResponse().ok("Enchère effectuée");
             
-            return bidding; 
+            return bid; 
 
         } catch (Exception e) {
             context.getResponse().serverError("Erreur lors de l'enchère");
             System.out.println("Erreur lors de l'enchère");
             e.printStackTrace();
-            return false;
+            return 0;
         }
     }
 }

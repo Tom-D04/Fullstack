@@ -41,18 +41,20 @@ public class ProductsDAO {
             while (result.next()) {
                 bidding = result.getInt("bid");
             }
+            return bidding;
         } catch (SQLException e) {
             System.out.println("Erreur lors de la récupération du montant de l'enchère");
             e.printStackTrace();
+            return 0;
         }
-            return bidding;
+            
     }
 
         public boolean bid(int id){
             try {
                 PreparedStatement statement = this.db.prepareStatement("UPDATE product SET bid = bid + 50 WHERE id = ?");
                 statement.setInt(1, id);
-                statement.executeUpdate();  // On utilise executeUpdate car c'est une Update de la DB et on ne récupère pas de résultat au contraire de exacuteQuery où on récupère forcément un résultat
+                statement.executeUpdate();  // On utilise executeUpdate car c'est une Update de la DB et on ne récupère pas de résultat au contraire de executeQuery où on récupère forcément un résultat
                 System.out.println("Enchère effectuée");
                 return true;            
             } catch (SQLException e) {

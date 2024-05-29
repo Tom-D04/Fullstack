@@ -18,15 +18,13 @@ export class ProductsView{
         produit.innerHTML = `
             <h2> ${productInfo.name} </h2>
             <p> ${productInfo.owner} </p>
-            <p id = 'bid${productInfo.id}'> ${productInfo.bid} </p>
+            <p id = 'bid'+${productInfo.id}> ${productInfo.bid} </p>
             <button id = ${productInfo.id}> Enchérir </button>
         `;
         document.getElementById(productInfo.id).addEventListener('click', async () => {
             const bid = await ProductsService.bid(productInfo.id);
             if(bid){
-                var enchere = document.getElementById('bid'+productInfo.id);
-                const updateEnchere = await ProductsService.findBid(productInfo.id);
-                enchere.innerHTML = updateEnchere;
+                updateBid(data)
             }
             else{
                 console.log("Erreur lors de l'enchère");
@@ -36,6 +34,16 @@ export class ProductsView{
     }
     updateBid(data){
         console.log(data);
+        if (data && data.hasOwnProperty('id') && data.hasOwnProperty('bid')) {
+            var enchere = document.getElementById('bid' + data.id);
+            if (enchere) {
+                enchere.textContent = data.newBid;
+            } else {
+                console.log('Element not found:', 'bid' + data.id);
+            }
+        } else {
+            console.log('Invalid data:', data);
+        }
     }
-        
 }
+        

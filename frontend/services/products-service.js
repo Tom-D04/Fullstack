@@ -29,15 +29,17 @@ export class ProductsService{
         }
     }
     static async findBid(id){
-        const response = await fetch('http://localhost:8081/bidding/'+id+'', {
+        const response = await fetch('http://localhost:8081/bidding/'+id, {
             method: 'GET',
             headers: {
                 'Content-Type': 'application/json'
             }
         })
+        console.log('Response status:', response.status);
         if(response.status === 200)
             {
             const data = await response.json();
+            console.log('Response data:', data);
             return data;
             }
         else{
