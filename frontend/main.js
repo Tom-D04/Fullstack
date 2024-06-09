@@ -4,8 +4,8 @@ import { SSEClient } from "./lib/sse-client.js"
 async function run(){
     ProductsView.displayProducts()
     const mySSEClient = new SSEClient("localhost:8081");
-    mySSEClient.subscribe("bids", ProductsView.updateBid);
     mySSEClient.connect();
+    mySSEClient.subscribe("bids", ProductsView.updateBid);
 
 }
 

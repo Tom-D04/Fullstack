@@ -16,12 +16,11 @@ export class ProductsService{
                 'Content-Type': 'application/json'
             },
             body: JSON.stringify({
-                bid: 1
+                bid: 50
             })
         })
         if(response.status === 200)
             {
-                this.findBid(id);
                 return true;
             }
         else{

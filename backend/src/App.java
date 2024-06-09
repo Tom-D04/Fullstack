@@ -8,10 +8,10 @@ public class App {
         WebServer webserver = new WebServer();
         webserver.listen(8081);
         ProductsController myController = new ProductsController();
-        webserver.getRouter().post(
+        /*webserver.getRouter().post(
             "/bid/:productId",
             (WebServerContext context) -> { myController.bid(context); }
-        );
+        );*/
         webserver.getRouter().get(
             "/products",
             (WebServerContext context) -> { myController.findAll(context); }

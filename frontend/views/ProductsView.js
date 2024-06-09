@@ -23,27 +23,17 @@ export class ProductsView{
         `;
         document.getElementById(productInfo.id).addEventListener('click', async () => {
             const bid = await ProductsService.bid(productInfo.id);
-            if(bid){
-                updateBid(data)
-            }
-            else{
-                console.log("Erreur lors de l'enchère");
-            }
         });
         return produit;
     }
-    updateBid(data){
+    static updateBid(data){
         console.log(data);
-        if (data && data.hasOwnProperty('id') && data.hasOwnProperty('bid')) {
-            var enchere = document.getElementById('bid' + data.id);
-            if (enchere) {
-                enchere.textContent = data.newBid;
-            } else {
-                console.log('Element not found:', 'bid' + data.id);
-            }
+        var enchere = document.getElementById('bid' + data.id);
+        if (enchere) {
+            enchere.innerHTML = data.newBid;
         } else {
-            console.log('Invalid data:', data);
+            console.log('Element not found:', 'bid' + data.id);
+        }
         }
     }
-}
         

@@ -46,8 +46,7 @@ public class ProductsController {
             String idString = Integer.toString(id);
             String bidString = Integer.toString(bid);    
             context.getResponse().json(bid);
-            context.getSSE().emit("bids", "id: " + idString + " bid: " + bidString + "\n\n))");
-            context.getResponse().ok("Enchère effectuée");
+            context.getSSE().emit("bids", idString + " " + bidString);
             
             return bid; 
 
